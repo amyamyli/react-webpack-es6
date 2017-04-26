@@ -19,6 +19,7 @@ var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CleanPlugin = require('clean-webpack-plugin'); //清理文件夹
 // css autoprefix  自动给 css 添加浏览器内核前缀
 var precss = require('precss');
 var autoprefixer = require('autoprefixer');
@@ -136,7 +137,7 @@ module.exports = {
     },
     //其它解决方案配置
     resolve: {
-        extensions: ['.js', '.json', '.scss' , '.css']
+        extensions: ['.js', '.jsx','.json', '.scss' , '.css', '.less']
     },
     //插件项
     plugins: [
@@ -161,6 +162,12 @@ module.exports = {
                 // sourceMap: true,
                 warnings: false
             }
+        }),
+        //清空输出目录
+        new CleanPlugin(['dist'], {
+            "root": path.resolve(__dirname, './'),
+            verbose: true,
+            dry: false
         })
     ],
 

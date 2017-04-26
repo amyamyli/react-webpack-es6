@@ -1,0 +1,18 @@
+@content_width:800px;
+@content_height:600px;
+.center-content{
+    width:@content_width;
+    height: @content_height;
+    &:after{
+        content:'';
+        clear: both;
+        display: block;
+    };
+
+    li{
+        font-size: 20px;
+        height: 20px;
+        padding: 10px;
+        background-color: yellow;
+    }
+}
