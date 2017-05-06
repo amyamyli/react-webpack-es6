@@ -1,5 +1,5 @@
 import React from 'react';
-import Style from './head.css';
+import Style from './head.less';
 class Head extends React.Component{
     constructor(props){
         super(props);

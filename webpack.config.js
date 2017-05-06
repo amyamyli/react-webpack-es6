@@ -14,27 +14,28 @@
  * 11.全局替换指定字符串
  * 12.本地接口模拟服务 （直接使用 epxress 创建一个本地服务）
  * 13.发布到远端机
+
  */
 var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CleanPlugin = require('clean-webpack-plugin'); //清理文件夹
+var OpenBrowserPlugin = require('open-browser-webpack-plugin');
+
 // css autoprefix  自动给 css 添加浏览器内核前缀
 var precss = require('precss');
 var autoprefixer = require('autoprefixer');
 
   const glob = require('glob');
 // 注入所有src下以 -index.jsx结尾的文件
-  const files = glob.sync('./app/js/*.js'); // 全目录./app/**/*.js
+  const files = glob.sync('./src/js/*.js');
   const newEntries = files.reduce(function (memo, file) {
     // const name = path.basename(file, '.jsx');
-    const name = file.replace('./app/js/', '').replace('.js', ''); // 全目录./app/**/
+    const name = file.replace('./src/js/', '').replace('.js', '');
     memo[name] = file;
-    console.log(file,memo,1111);
     return memo;
   }, {});
-  console.log(newEntries,222);
   const entry = Object.assign({}, {
     index: [
             'webpack-dev-server/client?http://localhost:8000',
@@ -47,6 +48,14 @@ var autoprefixer = require('autoprefixer');
   }, newEntries);
 
 module.exports = {
+    devServer: {
+        historyApiFallback: true,
+        hot: true,
+        inline: true,
+        progress: true,
+        contentBase: './app',
+        port: 8000
+      },
     //页面入口文件配置
     entry:entry,
     // entry: {
@@ -66,6 +75,7 @@ module.exports = {
     
     //入口文件输出配置
     output: {
+        publicPath: "http://127.0.0.1:8000/dist/",
         path: __dirname + '/dist/',
         filename: 'js/[name].js',
         chunkFilename: "[id].js"
@@ -141,6 +151,13 @@ module.exports = {
     },
     //插件项
     plugins: [
+        //清空输出目录
+        new CleanPlugin(['dist'], {
+            "root": path.resolve(__dirname, './'),
+            verbose: true,
+            dry: false
+        }),
+        new OpenBrowserPlugin({ url: 'http://localhost:8000' }), // 打开浏览器
         new webpack.HotModuleReplacementPlugin(), // 热更新
         new webpack.NoEmitOnErrorsPlugin(),
         new webpack.optimize.CommonsChunkPlugin({ name: 'lib', filename: 'js/common/lib.js' }), // 打包公共资源
@@ -162,13 +179,8 @@ module.exports = {
                 // sourceMap: true,
                 warnings: false
             }
-        }),
-        //清空输出目录
-        new CleanPlugin(['dist'], {
-            "root": path.resolve(__dirname, './'),
-            verbose: true,
-            dry: false
         })
+        
     ],
 
     

@@ -1,41 +1,72 @@
-.head{
-    width:100%;
-    height: 200px;
-    background-color: grey;
-    font-size: 32px;
-    text-align: center;
-    color:red;
-}ul{
-    width: 30%;
-    height: 600px;
-    float: left;
-    color: green;
+.head {
+  width: 100%;
+  height: 200px;
+  background-color: grey;
+  font-size: 32px;
+  text-align: center;
+  color: red;
 }
-.content{
-    width: 70%;
-    height: 600px;
-    background-color: yellow;
-    float: left;
-    text-align: center;
-}.foot{
-    width: 100%;
-    height: 100px;
-    color: green;
-    font-size: 18px;
-    background-color: #ccc;
-    text-align: center;
-}.center-content {
-  width: 800px;
+ul {
+  width: 30%;
   height: 600px;
+  float: left;
+  background: green;
+}
+ul li {
+  font-size: 20px;
+  height: 20px;
+  padding: 10px;
+  color: yellow;
+}
+.content {
+  width: 60%;
+  height: 540px;
+  background-color: yellow;
+  float: left;
+  text-align: center;
+  padding: 30px;
+}
+.content-form {
+  margin: 0 auto;
+}
+.content-form .content-input {
+  display: block;
+  width: 200px;
+  height: 30px;
+  margin: 20px auto;
+}
+.content-form .content-btn {
+  width: 80px;
+  height: 30px;
+  background-color: #4395ff;
+  color: #fff;
+}
+.content-form .content-btn:hover {
+  background-color: blue;
+}
+.lists {
+  padding-top: 30px;
+}
+.lists .list-author {
+  font-size: 20px;
+  color: red;
+  margin-right: 50px;
+}
+.foot {
+  width: 100%;
+  height: 100px;
+  color: green;
+  font-size: 18px;
+  background-color: #ccc;
+  text-align: center;
+}
+.center-content {
+  width: 1000px;
+  height: 600px;
+  margin: 0 auto;
 }
 .center-content:after {
   content: '';
   clear: both;
   display: block;
-}
-.center-content li {
-  font-size: 20px;
-  height: 20px;
-  padding: 10px;
-  background-color: yellow;
 }

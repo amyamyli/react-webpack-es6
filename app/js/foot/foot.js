@@ -1,5 +1,5 @@
 import React from 'react';
-import Style from './foot.css';
+import Style from './foot.less';
 
 class Foot extends React.Component{
     constructor(props){

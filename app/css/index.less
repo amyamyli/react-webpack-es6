@@ -1,18 +1,12 @@
-@content_width:800px;
+@content_width:1000px;
 @content_height:600px;
 .center-content{
     width:@content_width;
     height: @content_height;
+    margin: 0 auto;
     &:after{
         content:'';
         clear: both;
         display: block;
     };
-
-    li{
-        font-size: 20px;
-        height: 20px;
-        padding: 10px;
-        background-color: yellow;
-    }
 }
